@@ -1,6 +1,14 @@
 # ChromaCloak AI 🧙‍♂️✨
 
+![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python)
+![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-green?style=for-the-badge&logo=opencv)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+
 A real-time, automated "Invisibility Cloak" implementation built using Python and OpenCV. By utilizing HSV color-space transformation, dual-range masking, and morphological filtering, **ChromaCloak AI** isolates specific color thresholds and seamlessly overlays a static background stream to achieve a smooth invisibility effect.
+
+## 🎬 Demo Preview
+
+![ChromaCloak AI Demo](assets/demo.gif)
 
 ---
 
