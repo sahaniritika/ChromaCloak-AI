@@ -48,10 +48,17 @@ class CloakTransformer(VideoTransformerBase):
 # Streamlit UI Controls
 st.info("💡 Step away from the camera for 1 second when starting so the background locks cleanly!")
 
+from streamlit_webrtc import webrtc_streamer, RTCConfiguration
+
+# RTC Configuration with free Google STUN servers
+RTC_CONFIGURATION = RTCConfiguration(
+    {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
+)
+
+# In your main app layout where webrtc_streamer is called:
 webrtc_streamer(
-    key="chromacloak-stream",
-    mode=WebRtcMode.SENDRECV,
-    video_transformer_factory=CloakTransformer,
+    key="invisibility-cloak",
+    video_processor_factory=VideoProcessor,
+    rtc_configuration=RTC_CONFIGURATION,
     media_stream_constraints={"video": True, "audio": False},
-    async_transform=True,
 )
