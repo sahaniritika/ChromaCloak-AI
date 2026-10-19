@@ -24,9 +24,9 @@ class CloakTransformer(VideoTransformerBase):
         # HSV Color Transformation
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
-      # Strict HSV Thresholding for High Saturation Red (Filters out skin tones completely)
-        lower_red1, upper_red1 = np.array([0, 160, 120]), np.array([8, 255, 255])
-        lower_red2, upper_red2 = np.array([172, 160, 120]), np.array([180, 255, 255])
+      # Ultra-strict Saturation & Value thresholds to isolate pure red objects from skin tones
+        lower_red1, upper_red1 = np.array([0, 175, 130]), np.array([6, 255, 255])
+        lower_red2, upper_red2 = np.array([174, 175, 130]), np.array([180, 255, 255])
 
         mask1 = cv2.inRange(hsv, lower_red1, upper_red1)
         mask2 = cv2.inRange(hsv, lower_red2, upper_red2)
