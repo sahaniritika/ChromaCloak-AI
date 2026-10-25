@@ -2,9 +2,9 @@ import cv2
 import imageio.v2 as imageio
 import os
 
-video_path = 'demo.gif.mp4'
+video_path = os.path.expanduser('~\\Downloads\\demo.gif.mp4')
 if not os.path.exists(video_path):
-    print('Error: demo.gif.mp4 nahi mila!')
+    print(f'Error: {video_path} nahi mila!')
 else:
     cap = cv2.VideoCapture(video_path)
     fps = cap.get(cv2.CAP_PROP_FPS)
