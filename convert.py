@@ -1,12 +1,24 @@
 import cv2
 import imageio.v2 as imageio
 import os
+import glob
 
-video_path = os.path.expanduser('~\\Downloads\\demo.gif.mp4')
-if not os.path.exists(video_path):
-    print(f'Error: {video_path} nahi mila!')
+# OneDrive folder mein saari video files dhoondo
+onedrive_path = os.path.expanduser('~\\OneDrive')
+search_patterns = [os.path.join(onedrive_path, '**\\*.mp4'), os.path.join(onedrive_path, '**\\*.gif')]
+
+files = []
+for p in search_patterns:
+    files.extend(glob.glob(p, recursive=True))
+
+if not files:
+    print('Error: OneDrive mein koi video/gif nahi mili!')
 else:
-    cap = cv2.VideoCapture(video_path)
+    # Sabse nayi (latest) file uthao
+    latest_file = max(files, key=os.path.getmtime)
+    print(f'Found latest file in OneDrive: {latest_file}')
+    
+    cap = cv2.VideoCapture(latest_file)
     fps = cap.get(cv2.CAP_PROP_FPS)
     fps = fps if fps and fps > 0 else 10
     
